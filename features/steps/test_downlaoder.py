@@ -8,7 +8,7 @@ def step_impl(context, word):
     context.driver(resourceId=f"{context.app_package_name}:id/tvSearch").click()
     context.driver.send_keys(word, clear=True)
     context.driver.press('enter')
-    sleep(8)
+    sleep(10)
 
 
 @step("用户应该看到悬浮按钮")
@@ -21,6 +21,7 @@ def step_impl(context):
 def step_impl(context):
     context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").wait()
     assert context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView")
+    sleep(2)
 
 
 @step("用户在当前页面点击悬浮下载按钮")
@@ -38,6 +39,7 @@ def step_impl(context):
 @step("用户在下载进度页点击关闭按钮")
 def step_impl(context):
     context.driver(resourceId=f"{context.app_package_name}:id/ivClose").click()
+    sleep(2)
 
 
 @step("用户点击底部工具栏主页按钮")
@@ -159,5 +161,6 @@ def step_impl(context):
 
 @step("用户在当前页面点击关闭广告按钮")
 def step_impl(context):
-    context.driver(text="Close Ad ✖").wait()
-    context.driver(text="Close Ad ✖").click()
+    if context.driver(resourceId="Close Ad ✖").exists():
+        context.driver(text="Close Ad ✖").click()
+    sleep(2)
