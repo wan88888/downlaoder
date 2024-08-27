@@ -30,6 +30,18 @@ def step_impl(context):
     sleep(2)
 
 
+@step("用户尝试点击悬浮下载按钮")
+def step_impl(context):
+    download_num = context.driver(resourceId=f"{context.app_package_name}:id/remindCountView").get_text()
+    if int(download_num) > 1:
+        context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
+        context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
+        sleep(2)
+    else:
+        context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
+        sleep(2)
+
+
 @step("用户应该看到下载进度页")
 def step_impl(context):
     context.driver(resourceId=f"{context.app_package_name}:id/tvTitle").wait()
@@ -77,17 +89,21 @@ def step_impl(context, x, y):
 def step_impl(context, option):
     match int(option):
         case 1:
-            if context.driver(textContains="En").exists():
-                context.driver.click(0.5, 0.69)
+            if context.driver.exists(text="Tengo 18 años o más - Entrar"):
+                context.driver(text="Tengo 18 años o más - Entrar").click()
+                sleep(2)
         case 2:
-            if context.driver(textContains="I'm").exists():
+            if context.driver.exists(textContains="I'm"):
                 context.driver.click(0.5, 0.78)
+                sleep(2)
         case 3:
-            if context.driver(resourceId="age_check_yes").exists():
+            if context.driver.exists(resourceId="age_check_yes"):
                 context.driver(resourceId="age_check_yes").click()
+                sleep(2)
         case 4:
-            if context.driver(resourceId="btn_agree").exists():
+            if context.driver.exists(resourceId="btn_agree"):
                 context.driver(resourceId="btn_agree").click()
+                sleep(2)
 
 
 @step("用户向上滑动")
@@ -134,6 +150,10 @@ def step_impl(context, item):
         case 1:
             context.driver(text="").wait()
             context.driver(text="").click()
+            if context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView"):
+                pass
+            else:
+                context.driver(text="").click()
         case 2:
             context.driver(text="Play").wait()
             context.driver(text="Play").click()
@@ -161,6 +181,20 @@ def step_impl(context):
 
 @step("用户在当前页面点击关闭广告按钮")
 def step_impl(context):
-    if context.driver(resourceId="Close Ad ✖").exists():
+    if context.driver.exists(text="Close Ad ✖"):
         context.driver(text="Close Ad ✖").click()
     sleep(2)
+
+
+@step("用户检查工具栏窗口")
+def step_impl(context):
+    context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
+    context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
+    ele_num = context.driver(resourceId=f"{context.app_package_name}:id/ivClose").count
+    if ele_num > 1:
+        context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
+        context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
+        sleep(2)
+    else:
+        context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
+        sleep(2)

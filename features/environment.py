@@ -10,19 +10,24 @@ def before_all(context):
 
 
 def before_feature(context, feature):
-    # context.feature_name = feature.name
-    # if "all1" in context.feature_name:
-    #     context.app_package_name = "free.video.downloader.converter.music"
-    # elif "all3" in context.feature_name:
-    #     context.app_package_name = "video.downloader.videodownloader.tube"
-    # else:
-    #     print("package not exists!")
     context.driver = u2.connect()
     context.driver.app_start(context.app_package_name)
     context.driver.implicitly_wait(30)
-    context.driver.watcher.when(
-        f'//*[@resource-id="{context.app_package_name}:id/close_dialog_view"]').click()
-    context.driver.watcher.start()
+    context.ctx = context.driver.watch_context()
+    context.ctx.when(f'//*[@resource-id="{context.app_package_name}:id/close_dialog_view"]').click()
+    context.ctx.wait_stable()
+
+
+def after_scenario(context, scenario):
+    context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
+    context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
+    ele_num = context.driver(resourceId=f"{context.app_package_name}:id/ivClose").count
+    if ele_num > 1:
+        for i in range(0, ele_num):
+            context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
+            time.sleep(1)
+    else:
+        context.driver(resourceId=f"{context.app_package_name}:id/ivClose").click()
 
 
 def after_step(context, step):
@@ -34,7 +39,7 @@ def after_step(context, step):
 
 
 def after_feature(context, feature):
-    context.driver.watcher.stop()
+    context.ctx.stop()
     context.driver.app_stop(context.app_package_name)
 
 
