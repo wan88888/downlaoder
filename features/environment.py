@@ -19,15 +19,15 @@ def before_feature(context, feature):
 
 
 def after_scenario(context, scenario):
-    context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
-    context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
-    ele_num = context.driver(resourceId=f"{context.app_package_name}:id/ivClose").count
-    if ele_num > 1:
-        for i in range(0, ele_num):
+    context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").wait()
+    num_text = context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").get_text()
+    windows_num = int(num_text)
+    if windows_num > 1:
+        context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
+        context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
+        for i in range(0, windows_num):
             context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
-            time.sleep(1)
-    else:
-        context.driver(resourceId=f"{context.app_package_name}:id/ivClose").click()
+            time.sleep(2)
 
 
 def after_step(context, step):

@@ -5,6 +5,7 @@ from behave import *
 
 @step('用户在首页搜索框输入"{word}"')
 def step_impl(context, word):
+    context.driver(resourceId=f"{context.app_package_name}:id/tvSearch").wait()
     context.driver(resourceId=f"{context.app_package_name}:id/tvSearch").click()
     context.driver.send_keys(word, clear=True)
     context.driver.press('enter')
@@ -24,21 +25,25 @@ def step_impl(context):
     sleep(2)
 
 
-@step("用户在当前页面点击悬浮下载按钮")
-def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
-    sleep(2)
+# @step("用户在当前页面点击悬浮下载按钮")
+# def step_impl(context):
+#     context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
+#     sleep(2)
 
 
-@step("用户尝试点击悬浮下载按钮")
+@step("用户点击悬浮下载按钮")
 def step_impl(context):
-    download_num = context.driver(resourceId=f"{context.app_package_name}:id/remindCountView").get_text()
-    if int(download_num) > 1:
+    count_text = context.driver(resourceId=f"{context.app_package_name}:id/remindCountView").get_text()
+    download_num = int(count_text)
+    if download_num > 1:
         context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
         context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
         sleep(2)
     else:
         context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
+        context.driver(resourceId=f"{context.app_package_name}:id/tvVideoList").wait()
+        if context.driver.exists(resourceId=f"{context.app_package_name}:id/tvVideoList"):
+            context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
         sleep(2)
 
 
@@ -48,10 +53,10 @@ def step_impl(context):
     assert context.driver.exists(resourceId=f"{context.app_package_name}:id/tvTitle")
 
 
-@step("用户在下载进度页点击关闭按钮")
-def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/ivClose").click()
-    sleep(2)
+# @step("用户在下载进度页点击关闭按钮")
+# def step_impl(context):
+#     context.driver(resourceId=f"{context.app_package_name}:id/ivClose").click()
+#     sleep(2)
 
 
 @step("用户点击底部工具栏主页按钮")
@@ -67,16 +72,16 @@ def step_impl(context):
     sleep(2)
 
 
-@step("用户用户应该看到下载列表")
-def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/downloadView").wait()
-    assert context.driver.exists(resourceId=f"{context.app_package_name}:id/downloadView")
-
-
-@step("用户在下载列表点击Download按钮")
-def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
-    sleep(2)
+# @step("用户用户应该看到下载列表")
+# def step_impl(context):
+#     context.driver(resourceId=f"{context.app_package_name}:id/downloadView").wait()
+#     assert context.driver.exists(resourceId=f"{context.app_package_name}:id/downloadView")
+#
+#
+# @step("用户在下载列表点击Download按钮")
+# def step_impl(context):
+#     context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
+#     sleep(2)
 
 
 @step("用户在当前页面点击坐标({x},{y})")
@@ -89,8 +94,8 @@ def step_impl(context, x, y):
 def step_impl(context, option):
     match int(option):
         case 1:
-            if context.driver.exists(text="Tengo 18 años o más - Entrar"):
-                context.driver(text="Tengo 18 años o más - Entrar").click()
+            if context.driver.exists(textContains="Enter"):
+                context.driver(textContains="Enter").click()
                 sleep(2)
         case 2:
             if context.driver.exists(textContains="I'm"):
@@ -100,11 +105,6 @@ def step_impl(context, option):
             if context.driver.exists(resourceId="age_check_yes"):
                 context.driver(resourceId="age_check_yes").click()
                 sleep(2)
-        case 4:
-            if context.driver.exists(resourceId="btn_agree"):
-                context.driver(resourceId="btn_agree").click()
-                sleep(2)
-
 
 @step("用户向上滑动")
 def step_impl(context):
@@ -116,7 +116,7 @@ def step_impl(context):
 def step_impl(context):
     context.driver(text="Dailymotion").wait()
     context.driver(text="Dailymotion").click()
-    sleep(8)
+    sleep(15)
 
 
 @step("用户点击底部工具栏窗口按钮")
@@ -150,9 +150,7 @@ def step_impl(context, item):
         case 1:
             context.driver(text="").wait()
             context.driver(text="").click()
-            if context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView"):
-                pass
-            else:
+            if not context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView"):
                 context.driver(text="").click()
         case 2:
             context.driver(text="Play").wait()
@@ -188,13 +186,17 @@ def step_impl(context):
 
 @step("用户检查工具栏窗口")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
-    context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
-    ele_num = context.driver(resourceId=f"{context.app_package_name}:id/ivClose").count
-    if ele_num > 1:
+    context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").wait()
+    num_text = context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").get_text()
+    windows_num = int(num_text)
+    if windows_num > 1:
+        context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
+        context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
         context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
         context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
         sleep(2)
-    else:
-        context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
-        sleep(2)
+
+
+@step("用户点击返回键")
+def step_impl(context):
+    context.driver.press('back')
