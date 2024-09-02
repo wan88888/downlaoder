@@ -31,9 +31,8 @@ def step_impl(context):
     download_num = int(count_text)
     if download_num > 1:
         context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
-        context.driver(resourceId=f"{context.app_package_name}:id/downloadView").wait()
-        context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
         sleep(2)
+        context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
     else:
         context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
         sleep(2)
@@ -143,7 +142,7 @@ def step_impl(context):
     windows_num = int(num_text)
     if windows_num > 1:
         context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
-        context.driver(resourceId=f"{context.app_package_name}:id/ivClose").wait()
+        sleep(3)
         context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
         context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
         sleep(2)

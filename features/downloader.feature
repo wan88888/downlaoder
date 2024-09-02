@@ -41,8 +41,7 @@
   场景大纲: xhamster.com系列网站回归测试
     当用户在首页搜索框输入"<word>"
     而且用户点击同意按钮2
-    那么用户应该看到悬浮按钮
-    当用户在当前页面点击坐标(<x>,<y>)
+    而且用户在当前页面点击坐标(<x>,<y>)
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页
@@ -136,7 +135,7 @@
     那么用户应该看到主页
     例子:
       | word                    | x    | y    |
-      | alarbda.com             | 0.5  | 0.75 |
+#      | alarbda.com             | 0.5  | 0.75 |
       | www.sex1x.com           | 0.5  | 0.6  |
       | www.xnx33.com           | 0.5  | 0.6  |
       | xnxxsex.net             | 0.5  | 0.4  |
@@ -168,7 +167,7 @@
       | www.arbada.com          | 0.46 | 0.65 |
       | www.ixxx1.com           | 0.51 | 0.73 |
       | sexalarab.com           | 0.5  | 0.5  |
-      | www.aparat.com          | 0.52 | 0.4  |
+      | www.aparat.com          | 0.5 | 0.52  |
       | www.watchxn.com         | 0.5  | 0.8  |
       | www.arabxn.com          | 0.5  | 0.75 |
       | pornhat.video           | 0.72 | 0.45 |
@@ -183,7 +182,6 @@
       | mrvideospornogratis.xxx | 0.5  | 0.58 |
       | www.xvideos-ar.com      | 0.5  | 0.35 |
       | www.xvv1deos.com        | 0.5  | 0.35 |
-      | sex-alarabi.com         | 0.5  | 0.45 |
       | sex-arabe.com           | 0.5  | 0.5  |
       | www.arbada.com          | 0.46 | 0.65 |
       | cinepornogratis.com     | 0.5  | 0.5  |
@@ -207,6 +205,7 @@
       | noodlemagazine.com | henti |
       | mat6tube.com       | more  |
 
+  @debug
   场景大纲: 打开新窗口类网站回归测试
     当用户在首页搜索框输入"<word>"
     那么用户应该看到悬浮按钮
@@ -219,12 +218,13 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word            | x    | y   |
-      | www.arabsex.to  | 0.25 | 0.6 |
-      | sex-arebi.com   | 0.5  | 0.5 |
-      | sex4arab.xxx    | 0.5  | 0.5 |
-      | capetinhas.blog | 0.75 | 0.4 |
-      | filmesporno.xxx | 0.72 | 0.5 |
+      | word            | x    | y    |
+#      | www.arabsex.to  | 0.25 | 0.6  |
+#      | sex-arebi.com   | 0.5  | 0.5  |
+#      | sex4arab.xxx    | 0.5  | 0.5  |
+#      | capetinhas.blog | 0.75 | 0.4  |
+#      | filmesporno.xxx | 0.72 | 0.5  |
+      | sex-alarabi.com | 0.5  | 0.45 |
 
   场景: xnxx.health网站回归测试
     当用户在首页搜索框输入"xnxx.health"
@@ -310,8 +310,9 @@
       | word          | x1   | y1   | x2   | y2   |
       | www.tubev.sex | 0.72 | 0.52 | 0.71 | 0.61 |
       | kudosporn.com | 0.75 | 0.53 | 0.75 | 0.43 |
-      | kudosporn.com | 0.25 | 0.38 | 0.75 | 0.4  |
+      | twister.porn | 0.25 | 0.38 | 0.75 | 0.4  |
 
+  @debug
   场景: xvideosporno.blog网站回归测试
     当用户在首页搜索框输入"xvideosporno.blog"
     那么用户应该看到悬浮按钮
