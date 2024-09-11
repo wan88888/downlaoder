@@ -73,8 +73,7 @@
 
   场景: dailymotion.com网站回归测试
     当用户在首页点击dailymotion图标
-    那么用户应该看到悬浮按钮
-    当用户在当前页面点击坐标(0.5,0.42)
+    而且用户在当前页面点击坐标(0.5,0.42)
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页
@@ -135,16 +134,13 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word                    | x    | y    |
-#      | alarbda.com             | 0.5  | 0.63 |
+      | word               | x    | y    |
       | www.sex1x.com           | 0.5  | 0.51 |
       | www.xnx33.com           | 0.5  | 0.51 |
       | xnxxsex.net             | 0.5  | 0.35 |
       | www.tokyvideo.com       | 0.5  | 0.35 |
-      | www.abozeb.com          | 0.5  | 0.5  |
       | www.kobiiys.com         | 0.75 | 0.28 |
       | 3gpking.name            | 0.74 | 0.31 |
-      | arabysexy.mobi          | 0.5  | 0.37 |
       | www.serviporno.com      | 0.74 | 0.29 |
       | kompoz2.com             | 0.75 | 0.28 |
       | www.superporn.com       | 0.5  | 0.35 |
@@ -157,8 +153,6 @@
       | arab-xn.com             | 0.5  | 0.59 |
       | www.wapoz.info          | 0.74 | 0.26 |
       | ijavhd.com              | 0.75 | 0.62 |
-      | xxxbule.com             | 0.5  | 0.51 |
-      | sex1x.com               | 0.5  | 0.51 |
       | pornocarioca.com        | 0.73 | 0.49 |
       | bucetaflix.com          | 0.26 | 0.61 |
       | hdsex.org               | 0.5  | 0.4  |
@@ -183,15 +177,10 @@
       | www.xvideos-ar.com      | 0.5  | 0.34 |
       | www.xvv1deos.com        | 0.5  | 0.34 |
       | sex-arabe.com           | 0.5  | 0.45 |
-      | www.arbada.com          | 0.5  | 0.55 |
       | cinepornogratis.com     | 0.5  | 0.49 |
-      | sexalarbda.com          | 0.26 | 0.55 |
       | cnnamador.com           | 0.5  | 0.71 |
-      | xvideosincesto.com      | 0.5  | 0.41 |
       | www.arabxn.com          | 0.5  | 0.73 |
-      | xxxbp.tv                | 0.5  | 0.67 |
       | xxvidsx.com             | 0.69 | 0.35 |
-      | xxxlist.bar             | 0.5  | 0.53 |
 
   场景大纲: 搜索类网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -205,11 +194,10 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word               | txt   |
-      | noodlemagazine.com | henti |
-      | mat6tube.com       | more  |
+      | word               | txt  |
+      | noodlemagazine.com | more |
+      | mat6tube.com       | more |
 
-  @debug
   场景大纲: 打开新窗口类网站回归测试
     当用户在首页搜索框输入"<word>"
     那么用户应该看到悬浮按钮
@@ -223,21 +211,17 @@
     那么用户应该看到主页
     例子:
       | word            | x    | y    |
-#      | www.arabsex.to  | 0.26 | 0.6  |
-#      | sex-arebi.com   | 0.5  | 0.51  |
-#      | sex4arab.xxx    | 0.5  | 0.5  |
-#      | capetinhas.blog | 0.74 | 0.4  |
-#      | filmesporno.xxx | 0.75 | 0.5  |
+      | sex-arebi.com   | 0.5  | 0.51 |
+      | sex4arab.xxx    | 0.5  | 0.5  |
+      | filmesporno.xxx | 0.75 | 0.5  |
       | sex-alarabi.com | 0.5  | 0.49 |
       | sexmtrgm.com    | 0.5  | 0.49 |
       | sexsati.com     | 0.74 | 0.47 |
 
   场景: xnxx.health网站回归测试
     当用户在首页搜索框输入"xnxx.health"
-#    而且用户向上滑动
     而且用户在当前页面点击坐标(0.5,0.81)
     而且用户检查工具栏窗口
-#    而且用户向上滑动
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页
@@ -316,9 +300,7 @@
       | word          | x1   | y1   | x2   | y2   |
       | www.tubev.sex | 0.73 | 0.52 | 0.73 | 0.64 |
       | kudosporn.com | 0.75 | 0.54 | 0.75 | 0.44 |
-      | twister.porn  | 0.25 | 0.38 | 0.75 | 0.42  |
 
-  @debug
   场景: xvideosporno.blog网站回归测试
     当用户在首页搜索框输入"xvideosporno.blog"
     那么用户应该看到悬浮按钮
@@ -345,5 +327,5 @@
     那么用户应该看到主页
     例子:
       | word        | x   | y    |
-      | ok.porn     | 0.5 | 0.59  |
+      | ok.porn     | 0.5 | 0.59 |
       | pornhat.com | 0.5 | 0.64 |

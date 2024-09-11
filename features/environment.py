@@ -19,13 +19,13 @@ def before_feature(context, feature):
 
 def after_scenario(context, scenario):
     context.driver(resourceId=f"{context.app_package_name}:id/ivDownload").click()
-    time.sleep(3)
+    time.sleep(2)
     if context.driver.exists(resourceId=f"{context.app_package_name}:id/ivEnableBatchDelete"):
         context.driver(resourceId=f"{context.app_package_name}:id/ivEnableBatchDelete").click()
         context.driver(resourceId=f"{context.app_package_name}:id/ivSelectAll").click()
         context.driver(resourceId=f"{context.app_package_name}:id/ivDeleteAll").click()
         context.driver(resourceId=f"{context.app_package_name}:id/right_actv").click()
-        context.driver(resourceId=f"{context.app_package_name}:id/ivBack").click()
+        context.driver.press('back')
     else:
         context.driver.press('back')
     context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").wait()
@@ -33,7 +33,7 @@ def after_scenario(context, scenario):
     windows_num = int(num_text)
     if windows_num > 1:
         context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
-        time.sleep(3)
+        time.sleep(2)
         i = context.driver(resourceId=f"{context.app_package_name}:id/ivClose").count
         while i > 0:
             context.driver(resourceId=f"{context.app_package_name}:id/ivClose").click()

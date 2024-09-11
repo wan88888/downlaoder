@@ -91,7 +91,7 @@ def step_impl(context):
 def step_impl(context):
     context.driver(text="Dailymotion").wait()
     context.driver(text="Dailymotion").click()
-    sleep(20)
+    sleep(15)
 
 
 @step("用户在当前页面点击播放按钮{item}")
@@ -142,7 +142,7 @@ def step_impl(context):
     windows_num = int(num_text)
     if windows_num > 1:
         context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
-        sleep(3)
+        sleep(2)
         context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
         context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
         sleep(2)
