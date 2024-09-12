@@ -81,12 +81,6 @@ def step_impl(context, option):
                 context.driver(resourceId="age_check_yes").click()
 
 
-@step("用户向上滑动")
-def step_impl(context):
-    context.driver.swipe_ext('up')
-    sleep(2)
-
-
 @step("用户在首页点击dailymotion图标")
 def step_impl(context):
     context.driver(text="Dailymotion").wait()
@@ -151,4 +145,3 @@ def step_impl(context):
 @step("用户点击返回键")
 def step_impl(context):
     context.driver.press('back')
-    sleep(2)

@@ -13,8 +13,6 @@ def before_feature(context, feature):
     context.driver = u2.connect()
     context.driver.app_start(context.app_package_name)
     context.driver.implicitly_wait(30)
-    context.driver.watcher.when(f'//*[@resource-id="{context.app_package_name}:id/rating_bar"]').press('back')
-    context.driver.watcher.start()
 
 
 def after_scenario(context, scenario):
@@ -28,7 +26,7 @@ def after_scenario(context, scenario):
         context.driver.press('back')
     else:
         context.driver.press('back')
-    context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").wait()
+    time.sleep(1)
     num_text = context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").get_text()
     windows_num = int(num_text)
     if windows_num > 1:
@@ -50,7 +48,6 @@ def after_step(context, step):
 
 
 def after_feature(context, feature):
-    context.driver.watcher.stop()
     context.driver.app_stop(context.app_package_name)
 
 
