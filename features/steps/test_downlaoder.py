@@ -22,7 +22,7 @@ def step_impl(context):
 def step_impl(context):
     context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").wait()
     assert context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView")
-    sleep(2)
+    sleep(1)
 
 
 @step("用户点击悬浮下载按钮")
@@ -56,13 +56,13 @@ def step_impl(context):
 def step_impl(context):
     context.driver(resourceId=f"{context.app_package_name}:id/tvTopTitle").wait()
     assert context.driver.exists(resourceId=f"{context.app_package_name}:id/tvTopTitle")
-    sleep(2)
+    sleep(1)
 
 
 @step("用户在当前页面点击坐标({x},{y})")
 def step_impl(context, x, y):
     context.driver.click(float(x), float(y))
-    sleep(5)
+    sleep(3)
 
 
 @step("用户点击同意按钮{option}")
@@ -139,9 +139,10 @@ def step_impl(context):
         sleep(2)
         context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
         context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
-        sleep(2)
+        sleep(1)
 
 
 @step("用户点击返回键")
 def step_impl(context):
     context.driver.press('back')
+    sleep(1)
