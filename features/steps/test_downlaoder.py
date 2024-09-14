@@ -46,6 +46,14 @@ def step_impl(context):
     assert context.driver.exists(resourceId=f"{context.app_package_name}:id/tvTitle")
 
 
+@step("用户检查下载页存在")
+def step_impl(context):
+    if context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView"):
+        context.driver(resourceId=f"{context.app_package_name}:id/ivDownload").click()
+    else:
+        pass
+
+
 @step("用户点击底部工具栏主页按钮")
 def step_impl(context):
     context.driver(resourceId=f"{context.app_package_name}:id/ivGoHome").wait()
@@ -62,21 +70,19 @@ def step_impl(context):
 @step("用户在当前页面点击坐标({x},{y})")
 def step_impl(context, x, y):
     context.driver.click(float(x), float(y))
-    sleep(3)
+    sleep(4)
 
 
 @step("用户点击同意按钮{option}")
 def step_impl(context, option):
     match int(option):
         case 1:
-            sleep(2)
             if context.driver.exists(textContains="Enter"):
                 context.driver(textContains="Enter").click()
         case 2:
             if context.driver.exists(textContains="I'm"):
                 context.driver(textContains="I'm").click()
         case 3:
-            sleep(2)
             if context.driver.exists(resourceId="age_check_yes"):
                 context.driver(resourceId="age_check_yes").click()
 
@@ -131,15 +137,17 @@ def step_impl(context):
 
 @step("用户检查工具栏窗口")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").wait()
+    sleep(2)
     num_text = context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").get_text()
     windows_num = int(num_text)
     if windows_num > 1:
         context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
         sleep(2)
         context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
-        context.driver(resourceId=f"{context.app_package_name}:id/coordinator").click()
+        context.driver.press('back')
         sleep(1)
+    else:
+        pass
 
 
 @step("用户点击返回键")

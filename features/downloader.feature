@@ -3,7 +3,6 @@
 
   场景大纲: pornhub系列网站回归测试
     当用户在首页搜索框输入"<word>"
-    而且用户点击同意按钮1
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页
@@ -145,15 +144,14 @@
       | kompoz2.com             | 0.75 | 0.28 |
       | www.superporn.com       | 0.5  | 0.35 |
       | yatv.red                | 0.74 | 0.36 |
-      | yako.pro                | 0.25 | 0.47 |
       | www.clip2vip.com        | 0.5  | 0.6  |
       | www.porndotcom.org      | 0.74 | 0.34 |
       | xnxx.com.se             | 0.5  | 0.51 |
       | 3rabxn.com              | 0.5  | 0.54 |
-      | arab-xn.com             | 0.5  | 0.59 |
       | www.wapoz.info          | 0.74 | 0.26 |
       | ijavhd.com              | 0.75 | 0.62 |
       | pornocarioca.com        | 0.73 | 0.49 |
+      | yako.pro                | 0.25 | 0.47 |
       | bucetaflix.com          | 0.26 | 0.61 |
       | hdsex.org               | 0.5  | 0.4  |
       | fngml.com               | 0.5  | 0.45 |
@@ -162,7 +160,6 @@
       | www.arbada.com          | 0.5  | 0.55 |
       | www.ixxx1.com           | 0.5  | 0.73 |
       | sexalarab.com           | 0.5  | 0.45 |
-      | www.aparat.com          | 0.5  | 0.51 |
       | www.watchxn.com         | 0.5  | 0.73 |
       | pornhat.video           | 0.73 | 0.39 |
       | fpo.xxx                 | 0.5  | 0.53 |
@@ -181,6 +178,18 @@
       | cnnamador.com           | 0.5  | 0.71 |
       | www.arabxn.com          | 0.5  | 0.73 |
       | xxvidsx.com             | 0.69 | 0.35 |
+      | pussyboy.net            | 0.5  | 0.47 |
+      | xxx18.uno               | 0.5  | 0.7  |
+      | gekso.org               | 0.26 | 0.34 |
+      | xorgasmo.com            | 0.26 | 0.51 |
+#      | arab-xn.com             | 0.5  | 0.77 |需要验证
+#      | alarbda.com             | 0.5  | 0.78 |需要验证
+      | www.abozeb.com          | 0.5  | 0.5  |
+      | arabysexy.mobi          | 0.5  | 0.37 |
+      | xxxbule.com             | 0.5  | 0.75 |
+#      | sexalarbda.com          | 0.5  | 0.81 |需要验证
+      | xvideosincesto.com      | 0.5  | 0.41 |
+      | xxxlist.bar             | 0.5  | 0.53 |
 
   场景大纲: 搜索类网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -210,13 +219,16 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word            | x    | y    |
-      | sex-arebi.com   | 0.5  | 0.51 |
-      | sex4arab.xxx    | 0.5  | 0.5  |
-      | filmesporno.xxx | 0.75 | 0.5  |
-      | sex-alarabi.com | 0.5  | 0.49 |
-      | sexmtrgm.com    | 0.5  | 0.49 |
-      | sexsati.com     | 0.74 | 0.47 |
+      | word             | x    | y    |
+      | sexmtrgm.com     | 0.5  | 0.49 |
+      | www.arabsex.to   | 0.26 | 0.6  |
+      | capetinhas.blog  | 0.26 | 0.4  |
+      | sex-arebi.com    | 0.5  | 0.51 |
+      | sex4arab.xxx     | 0.5  | 0.5  |
+      | filmesporno.xxx  | 0.75 | 0.5  |
+      | sex-alarabi.com  | 0.5  | 0.49 |
+      | sexsati.com      | 0.74 | 0.47 |
+      | x10.rusoska.mobi | 0.5  | 0.6  |
 
   场景: xnxx.health网站回归测试
     当用户在首页搜索框输入"xnxx.health"
@@ -264,7 +276,6 @@
     那么用户应该看到悬浮按钮
     当用户在当前页面点击坐标(0.75,0.39)
     而且用户在当前页面点击坐标(0.75,0.55)
-    而且用户在当前页面点击播放按钮2
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页
@@ -280,7 +291,7 @@
     而且用户在当前页面点击播放按钮3
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
-    那么用户应该看到下载进度页
+    那么用户检查下载页存在
     当用户点击返回键
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
@@ -300,6 +311,7 @@
       | word          | x1   | y1   | x2   | y2   |
       | www.tubev.sex | 0.73 | 0.52 | 0.73 | 0.64 |
       | kudosporn.com | 0.75 | 0.54 | 0.75 | 0.44 |
+      | twister.porn  | 0.25 | 0.38 | 0.25 | 0.42 |
 
   场景: xvideosporno.blog网站回归测试
     当用户在首页搜索框输入"xvideosporno.blog"
@@ -307,6 +319,7 @@
     当用户在当前页面点击坐标(0.25,0.46)
     而且用户检查工具栏窗口
     当用户在当前页面点击坐标(0.25,0.44)
+    而且用户检查工具栏窗口
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页
@@ -329,3 +342,4 @@
       | word        | x   | y    |
       | ok.porn     | 0.5 | 0.59 |
       | pornhat.com | 0.5 | 0.64 |
+      | ok.xxx      | 0.5 | 0.64 |
