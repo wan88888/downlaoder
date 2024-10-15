@@ -154,3 +154,8 @@ def step_impl(context):
 def step_impl(context):
     context.driver.press('back')
     sleep(1)
+
+
+@step("用户向上滑动页面")
+def step_impl(context):
+    context.driver.swipe_ext("up")
