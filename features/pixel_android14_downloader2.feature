@@ -57,15 +57,14 @@
       | cnnamador.com           | 0.5  | 0.71 |
       | www.arabxn.com          | 0.5  | 0.73 |
       | xxvidsx.com             | 0.69 | 0.35 |
-      | pussyboy.net            | 0.5  | 0.47 |
       | xxx18.uno               | 0.5  | 0.7  |
       | gekso.org               | 0.26 | 0.34 |
       | xorgasmo.com            | 0.26 | 0.51 |
-#      | arab-xn.com             | 0.5  | 0.77 |需要验证
-#      | alarbda.com             | 0.5  | 0.78 |需要验证
+      #| arab-xn.com             | 0.5  | 0.77 |需要验证
+      #| alarbda.com             | 0.5  | 0.78 |需要验证
       | www.abozeb.com          | 0.5  | 0.5  |
-      | arabysexy.mobi          | 0.5  | 0.37 |
+      #| arabysexy.mobi          | 0.5  | 0.37 |视频未解析
       | xxxbule.com             | 0.5  | 0.75 |
-#      | sexalarbda.com          | 0.5  | 0.81 |需要验证
+      #| sexalarbda.com          | 0.5  | 0.81 |需要验证
       | xvideosincesto.com      | 0.5  | 0.41 |
       | xxxlist.bar             | 0.5  | 0.53 |

@@ -156,6 +156,9 @@ def step_impl(context):
     sleep(1)
 
 
-@step("用户向上滑动页面")
-def step_impl(context):
-    context.driver.swipe_ext("up")
+@step("用户向上滑动页面{x}次")
+def step_impl(context, x):
+    i = int(x)
+    while i > 0:
+        context.driver.swipe_ext("up")
+        i -= 1
