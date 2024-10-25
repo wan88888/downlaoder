@@ -111,6 +111,9 @@ def step_impl(context, item):
                 '//*[@resource-id="videoPopup"]/android.view.View[1]/android.widget.ToggleButton[1]').wait()
             context.driver.xpath(
                 '//*[@resource-id="videoPopup"]/android.view.View[1]/android.widget.ToggleButton[1]').click()
+        case 4:
+            context.driver(text="재생").wait()
+            context.driver(text="재생").click()
 
 
 @step('用户在搜索框输入"{txt}"')

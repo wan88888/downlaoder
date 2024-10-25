@@ -1,5 +1,5 @@
 # language: zh-CN
-功能: all1 top100网站回归测试-part2
+功能: all1 top100网站回归测试
 
   场景大纲: 单个或多个视频网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -13,6 +13,8 @@
     那么用户应该看到主页
     例子:
       | word                    | x    | y    |
+      | www.wapoz.info          | 0.26 | 0.24 |
+      | xvideosincesto.com      | 0.5  | 0.41 |
       | www.sex1x.com           | 0.25 | 0.44 |
       | www.xnx33.com           | 0.5  | 0.48 |
       | xnxxsex.net             | 0.5  | 0.34 |
@@ -22,15 +24,12 @@
       | www.serviporno.com      | 0.74 | 0.28 |
       | kompoz2.com             | 0.75 | 0.27 |
       | www.superporn.com       | 0.5  | 0.34 |
-      | yatv.red                | 0.74 | 0.35 |
       | www.clip2vip.com        | 0.5  | 0.55 |
       | www.porndotcom.org      | 0.75 | 0.33 |
       | xnxx.com.se             | 0.5  | 0.5  |
       | 3rabxn.com              | 0.25 | 0.48 |
-      | www.wapoz.info          | 0.75 | 0.24 |
       | ijavhd.com              | 0.75 | 0.53 |
       | pornocarioca.com        | 0.73 | 0.49 |
-      | yako.pro                | 0.25 | 0.46 |
       | bucetaflix.com          | 0.26 | 0.6  |
       | hdsex.org               | 0.5  | 0.35 |
       | fngml.com               | 0.5  | 0.45 |
@@ -62,5 +61,20 @@
       | xorgasmo.com            | 0.26 | 0.45 |
       | www.abozeb.com          | 0.25 | 0.43 |
       | xxxbule.com             | 0.5  | 0.75 |
-      | xvideosincesto.com      | 0.5  | 0.41 |
       | xxxlist.bar             | 0.5  | 0.52 |
+
+  场景大纲: yatv类型网站回归测试
+    当用户在首页搜索框输入"<word>"
+    那么用户应该看到悬浮按钮
+    当用户在当前页面点击坐标(<x>,<y>)
+    而且用户在当前页面点击播放按钮4
+    那么用户应该看到悬浮按钮亮起
+    当用户点击悬浮下载按钮
+    那么用户应该看到下载进度页
+    当用户点击返回键
+    而且用户点击底部工具栏主页按钮
+    那么用户应该看到主页
+    例子:
+      | word     | x    | y    |
+      | yatv.red | 0.74 | 0.35 |
+      | yako.pro | 0.25 | 0.46 |

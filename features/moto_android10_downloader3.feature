@@ -1,5 +1,5 @@
 # language: zh-CN
-功能: all1 top100网站回归测试-part3
+功能: all1 top100网站回归测试
 
   场景大纲: 搜索类网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -14,7 +14,7 @@
     那么用户应该看到主页
     例子:
       | word               | txt  |
-      | noodlemagazine.com | more |
+      | noodlemagazine.com | snow |
       | mat6tube.com       | more |
 
   场景大纲: 打开新窗口类网站回归测试
@@ -29,19 +29,31 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word             | x    | y    |
-      | sexmtrgm.com     | 0.5  | 0.48 |
-      | www.arabsex.to   | 0.26 | 0.45 |
-      | capetinhas.blog  | 0.26 | 0.39 |
-      | sex-arebi.com    | 0.5  | 0.5  |
-      | sex4arab.xxx     | 0.25 | 0.42 |
-      | filmesporno.xxx  | 0.75 | 0.49 |
-      | sex-alarabi.com  | 0.25 | 0.38 |
-      | sexsati.com      | 0.75 | 0.46 |
-      | x10.rusoska.mobi | 0.25 | 0.53 |
-      | pussyboy.net     | 0.5  | 0.46 |
+      | word            | x    | y    |
+      | sexmtrgm.com    | 0.5  | 0.48 |
+      | www.arabsex.to  | 0.26 | 0.45 |
+      | capetinhas.blog | 0.26 | 0.39 |
+      | sex-arebi.com   | 0.5  | 0.5  |
+      | sex4arab.xxx    | 0.25 | 0.42 |
+      | filmesporno.xxx | 0.75 | 0.49 |
+      | sex-alarabi.com | 0.25 | 0.38 |
+      | sexsati.com     | 0.75 | 0.46 |
+      | pussyboy.net    | 0.5  | 0.46 |
 
-  场景: xnxx.health网站回归测试
+  场景: rusoska网站回归测试
+    当用户在首页搜索框输入"x10.rusoska.mobi"
+    那么用户应该看到悬浮按钮
+    当用户在当前页面点击坐标(0.73,0.53)
+    而且用户检查工具栏窗口
+    当用户在当前页面点击坐标(0.5,0.63)
+    那么用户应该看到悬浮按钮亮起
+    当用户点击悬浮下载按钮
+    那么用户应该看到下载进度页
+    当用户点击返回键
+    而且用户点击底部工具栏主页按钮
+    那么用户应该看到主页
+
+  场景: xnxx.health网站回归测试？
     当用户在首页搜索框输入"xnxx.health"
     而且用户向上滑动页面2次
     而且用户在当前页面点击坐标(0.5,0.65)
@@ -77,6 +89,7 @@
     当用户在当前页面点击坐标(0.25,0.4)
     而且用户检查工具栏窗口
     而且用户在当前页面点击播放按钮2
+    而且用户检查工具栏窗口
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
     那么用户应该看到下载进度页

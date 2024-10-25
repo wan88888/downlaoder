@@ -1,5 +1,5 @@
 # language: zh-CN
-功能: all1 top100网站回归测试-part1
+功能: all1 top100网站回归测试
 
   场景大纲: pornhub系列网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -18,9 +18,9 @@
     例子:
       | word            |
       | www.pornhub.com |
-#      | es.pornhub.com  |
-#      | fr.pornhub.com  |
-#      | pt.pornhub.com  |
+      | es.pornhub.com  |
+      | fr.pornhub.com  |
+      | pt.pornhub.com  |
 
   场景大纲: redtube.com系列网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -72,7 +72,6 @@
       | spankbang.com    | 0.26 | 0.56 |
 
   场景: dailymotion.com网站回归测试
-    #当用户在首页点击dailymotion图标
     当用户在首页搜索框输入"dailymotion.com"
     而且用户在当前页面点击坐标(0.5,0.45)
     那么用户应该看到悬浮按钮亮起
