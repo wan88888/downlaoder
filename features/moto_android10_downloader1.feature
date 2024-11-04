@@ -67,9 +67,9 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word             | x    | y    |
-      | la.spankbang.com | 0.74 | 0.56 |
-      | spankbang.com    | 0.26 | 0.56 |
+      | word             | x    | y   |
+      | la.spankbang.com | 0.74 | 0.8 |
+      | spankbang.com    | 0.26 | 0.8 |
 
   场景: dailymotion.com网站回归测试
     当用户在首页搜索框输入"dailymotion.com"

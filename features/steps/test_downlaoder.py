@@ -1,12 +1,14 @@
 # coding=utf-8
 from time import sleep
 from behave import *
+from features.environment import app_id
 
 
 @step('用户在首页搜索框输入"{word}"')
 def step_impl(context, word):
-    context.driver(resourceId=f"{context.app_package_name}:id/tvSearch").wait()
-    context.driver(resourceId=f"{context.app_package_name}:id/tvSearch").click()
+    search_input = context.driver(resourceId=app_id(context, "tvSearch"))
+    search_input.wait()
+    search_input.click()
     context.driver.send_keys(word, clear=True)
     context.driver.press('enter')
     sleep(10)
@@ -14,30 +16,30 @@ def step_impl(context, word):
 
 @step("用户应该看到悬浮按钮")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/normalLoadView").wait()
-    assert context.driver.exists(resourceId=f"{context.app_package_name}:id/normalLoadView")
+    normal_load = context.driver(resourceId=app_id(context, "normalLoadView"))
+    normal_load.wait()
+    assert normal_load.exists()
 
 
 @step("用户应该看到悬浮按钮亮起")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").wait()
-    assert context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView")
+    complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
+    complete_load.wait()
+    assert complete_load.exists()
     sleep(1)
 
 
 @step("用户点击悬浮下载按钮")
 def step_impl(context):
-    count_text = context.driver(resourceId=f"{context.app_package_name}:id/remindCountView").get_text()
+    count_text = context.driver(resourceId=app_id(context, "remindCountView")).get_text()
     download_num = int(count_text)
-    if download_num > 1:
-        context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
-        sleep(2)
-        context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
-    else:
-        context.driver(resourceId=f"{context.app_package_name}:id/completeLoadView").click()
-        sleep(2)
-        if context.driver.exists(resourceId=f"{context.app_package_name}:id/tvVideoList"):
-            context.driver(resourceId=f"{context.app_package_name}:id/downloadView").click()
+    complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
+    complete_load.click()
+    sleep(2)
+    download_button = context.driver(resourceId=app_id(context, "downloadView"))
+    tv_list = context.driver(resourceId=app_id(context, "tvVideoList"))
+    if download_num > 1 or tv_list.exists():
+        download_button.click()
 
 
 @step("用户应该看到下载进度页")
@@ -75,16 +77,18 @@ def step_impl(context, x, y):
 
 @step("用户点击同意按钮{option}")
 def step_impl(context, option):
-    match int(option):
-        case 1:
-            if context.driver.exists(textContains="Enter"):
-                context.driver(textContains="Enter").click()
-        case 2:
-            if context.driver.exists(textContains="I'm"):
-                context.driver(textContains="I'm").click()
-        case 3:
-            if context.driver.exists(resourceId="age_check_yes"):
-                context.driver(resourceId="age_check_yes").click()
+    button_conditions = {
+        1: {"textContains": "Enter"},
+        2: {"textContains": "I'm"},
+        3: {"resourceId": "age_check_yes"},
+    }
+    wait_and_click(context, **button_conditions.get(int(option), {}))
+
+
+def wait_and_click(context, **locator_args):
+    element = context.driver(**locator_args)
+    if element.wait():
+        element.click()
 
 
 @step("用户在首页点击dailymotion图标")
@@ -96,24 +100,15 @@ def step_impl(context):
 
 @step("用户在当前页面点击播放按钮{item}")
 def step_impl(context, item):
-    match int(item):
-        case 1:
-            context.driver(text="").wait()
-            context.driver(text="").click()
-            sleep(2)
-            if context.driver.exists(resourceId=f"{context.app_package_name}:id/normalLoadView"):
-                context.driver(text="").click()
-        case 2:
-            context.driver(text="Play").wait()
-            context.driver(text="Play").click()
-        case 3:
-            context.driver.xpath(
-                '//*[@resource-id="videoPopup"]/android.view.View[1]/android.widget.ToggleButton[1]').wait()
-            context.driver.xpath(
-                '//*[@resource-id="videoPopup"]/android.view.View[1]/android.widget.ToggleButton[1]').click()
-        case 4:
-            context.driver(text="재생").wait()
-            context.driver(text="재생").click()
+    buttons = {
+        1: {"text": ""},
+        2: {"text": "Play"},
+        3: {"xpath": '//*[@resource-id="videoPopup"]/android.view.View[1]/android.widget.ToggleButton[1]'},
+        4: {"text": "재생"},
+    }
+    button_locator = buttons.get(int(item))
+    if button_locator:
+        wait_and_click(context, **button_locator)
 
 
 @step('用户在搜索框输入"{txt}"')
@@ -161,7 +156,4 @@ def step_impl(context):
 
 @step("用户向上滑动页面{x}次")
 def step_impl(context, x):
-    i = int(x)
-    while i > 0:
-        context.driver.swipe_ext("up")
-        i -= 1
+    [context.driver.swipe_ext("up") for _ in range(int(x))]
