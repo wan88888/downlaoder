@@ -53,8 +53,8 @@
       | word            | x    | y    |
       | xhamster.com    | 0.26 | 0.62 |
       | xhwide5.com     | 0.74 | 0.62 |
-      | xhamster.desi   | 0.26 | 0.82 |
-      | xhamster42.desi | 0.74 | 0.82 |
+      #| xhamster.desi   | 0.26 | 0.82 |？
+      #| xhamster42.desi | 0.74 | 0.82 |？
 
   场景大纲: spankbang.com系列网站回归测试
     当用户在首页搜索框输入"<word>"

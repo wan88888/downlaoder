@@ -18,14 +18,14 @@ def step_impl(context, word):
 def step_impl(context):
     normal_load = context.driver(resourceId=app_id(context, "normalLoadView"))
     normal_load.wait()
-    assert normal_load.exists()
+    assert normal_load.exists
 
 
 @step("用户应该看到悬浮按钮亮起")
 def step_impl(context):
     complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
     complete_load.wait()
-    assert complete_load.exists()
+    assert complete_load.exists
     sleep(1)
 
 
@@ -38,34 +38,37 @@ def step_impl(context):
     sleep(2)
     download_button = context.driver(resourceId=app_id(context, "downloadView"))
     tv_list = context.driver(resourceId=app_id(context, "tvVideoList"))
-    if download_num > 1 or tv_list.exists():
+    if download_num > 1 or tv_list.exists:
         download_button.click()
 
 
 @step("用户应该看到下载进度页")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/tvTitle").wait()
-    assert context.driver.exists(resourceId=f"{context.app_package_name}:id/tvTitle")
+    tv_title = context.driver(resourceId=app_id(context, "tvTitle"))
+    tv_title.wait()
+    assert tv_title.exists
 
 
 @step("用户检查下载页存在")
 def step_impl(context):
-    if context.driver.exists(resourceId=f"{context.app_package_name}:id/completeLoadView"):
-        context.driver(resourceId=f"{context.app_package_name}:id/ivDownload").click()
-    else:
-        pass
+    complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
+    iv_load = context.driver(resourceId=app_id(context, "ivDownload"))
+    if complete_load.exists:
+        iv_load.click()
 
 
 @step("用户点击底部工具栏主页按钮")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/ivGoHome").wait()
-    context.driver(resourceId=f"{context.app_package_name}:id/ivGoHome").click()
+    iv_home = context.driver(resourceId=app_id(context, "ivGoHome"))
+    iv_home.wait()
+    iv_home.click()
 
 
 @step("用户应该看到主页")
 def step_impl(context):
-    context.driver(resourceId=f"{context.app_package_name}:id/tvTopTitle").wait()
-    assert context.driver.exists(resourceId=f"{context.app_package_name}:id/tvTopTitle")
+    tv_top_title = context.driver(resourceId=app_id(context, "tvTopTitle"))
+    tv_top_title.wait()
+    assert tv_top_title.exists
     sleep(1)
 
 
@@ -91,13 +94,6 @@ def wait_and_click(context, **locator_args):
         element.click()
 
 
-@step("用户在首页点击dailymotion图标")
-def step_impl(context):
-    context.driver(text="Dailymotion").wait()
-    context.driver(text="Dailymotion").click()
-    sleep(15)
-
-
 @step("用户在当前页面点击播放按钮{item}")
 def step_impl(context, item):
     buttons = {
@@ -113,8 +109,9 @@ def step_impl(context, item):
 
 @step('用户在搜索框输入"{txt}"')
 def step_impl(context, txt):
-    context.driver(text="Search").wait()
-    context.driver(text="Search").click()
+    search_icon = context.driver(text="Search")
+    search_icon.wait()
+    search_icon.click()
     context.driver.send_keys(txt, clear=True)
     context.driver.press('enter')
     sleep(5)
@@ -122,30 +119,33 @@ def step_impl(context, txt):
 
 @step("用户在当前点击结果1")
 def step_impl(context):
-    context.driver(resourceId="result_1").wait()
-    context.driver(resourceId="result_1").click()
+    result_1 = context.driver(resourceId="result_1")
+    result_1.wait()
+    result_1.click()
 
 
 @step("用户在当前页面点击关闭广告按钮")
 def step_impl(context):
-    if context.driver.exists(text="Close Ad ✖"):
-        context.driver(text="Close Ad ✖").click()
+    ad_close = context.driver(text="Close Ad ✖")
+    if ad_close.exists:
+        ad_close.click()
     sleep(2)
 
 
 @step("用户检查工具栏窗口")
 def step_impl(context):
     sleep(2)
-    num_text = context.driver(resourceId=f"{context.app_package_name}:id/tvTabsNum2").get_text()
+    tv_tab = context.driver(resourceId=app_id(context, "tvTabsNum2"))
+    num_text = tv_tab.get_text()
     windows_num = int(num_text)
     if windows_num > 1:
-        context.driver(resourceId=f"{context.app_package_name}:id/ivTabs2").click()
+        iv_tab = context.driver(resourceId=app_id(context, "ivTabs2"))
+        iv_tab.click()
         sleep(2)
-        context.driver(resourceId=f"{context.app_package_name}:id/ivClose")[0].click()
+        iv_close = context.driver(resourceId=app_id(context, "ivClose"))
+        iv_close[0].click()
         context.driver.press('back')
         sleep(1)
-    else:
-        pass
 
 
 @step("用户点击返回键")

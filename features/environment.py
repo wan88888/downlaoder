@@ -6,12 +6,12 @@ import time
 from time import sleep
 
 
-def app_id(context, element_id):
-    return f"{context.app_package_name}:id/{element_id}"
-
-
 def before_all(context):
     context.app_package_name = "free.video.downloader.converter.music"
+
+
+def app_id(context, element_id):
+    return f"{context.app_package_name}:id/{element_id}"
 
 
 def before_feature(context, feature):
@@ -57,10 +57,14 @@ def close_all_tabs(context, resource_id):
 
 def after_step(context, step):
     if step.status == 'failed':
-        step_name = step.name.replace(" ", "_")
-        timestamp = time.strftime('%Y%m%d%H%M%S')
-        screenshot_path = f'screenshots/{step_name}_{timestamp}.png'
-        context.driver.screenshot(screenshot_path)
+        save_screenshot(context, step)
+
+
+def save_screenshot(context, step):
+    timestamp = time.strftime('%Y%m%d%H%M%S')
+    step_name = step.name.replace(" ", "_")
+    screenshot_path = f'screenshots/{step_name}_{timestamp}.png'
+    context.driver.screenshot(screenshot_path)
 
 
 def after_feature(context, feature):
