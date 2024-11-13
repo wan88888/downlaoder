@@ -14,15 +14,40 @@ def app_id(context, element_id):
     return f"{context.app_package_name}:id/{element_id}"
 
 
+def click_exists1(context, **locator_args):
+    element = context.driver(**locator_args)
+    if element.exists:
+        element.click()
+
+
+def click_exists2(context, locator1, locator2):
+    element1 = context.driver(**locator1)
+    element2 = context.driver(**locator2)
+    if element1.exists:
+        element2.click()
+
+
+def check_element_exists(context, **locator_args):
+    element = context.driver(**locator_args)
+    element.wait()
+    assert element.exists
+
+
+def wait_and_click(context, **locator_args):
+    element = context.driver(**locator_args)
+    element.wait()
+    element.click()
+
+
 def before_feature(context, feature):
     context.driver = u2.connect()
     context.driver.app_start(context.app_package_name)
     context.driver.implicitly_wait(30)
 
 
-def after_scenario(context, scenario):
-    handle_downloads(context)
-    close_extra_tabs(context)
+# def after_scenario(context, scenario):
+#     handle_downloads(context)
+#     close_extra_tabs(context)
 
 
 def handle_downloads(context):
@@ -37,9 +62,7 @@ def handle_downloads(context):
 def delete_all_downloads(context):
     resource_id_list = ["ivEnableBatchDelete", "ivSelectAll", "ivDeleteAll"]
     [context.driver(resourceId=app_id(context, resource_id)).click() for resource_id in resource_id_list]
-    right_actv_button = context.driver(resourceId=app_id(context, "right_actv"))
-    right_actv_button.wait()
-    right_actv_button.click()
+    wait_and_click(context, resourceId=app_id(context, "right_actv"))
 
 
 def close_extra_tabs(context):
@@ -67,8 +90,8 @@ def save_screenshot(context, step):
     context.driver.screenshot(screenshot_path)
 
 
-def after_feature(context, feature):
-    context.driver.app_stop(context.app_package_name)
+# def after_feature(context, feature):
+#     context.driver.app_stop(context.app_package_name)
 
 
 def after_all(context):

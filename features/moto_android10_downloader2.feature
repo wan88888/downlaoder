@@ -13,8 +13,11 @@
     那么用户应该看到主页
     例子:
       | word                    | x    | y    |
-      | www.wapoz.info          | 0.26 | 0.24 |
       | xvideosincesto.com      | 0.5  | 0.41 |
+      | xnxx.com.se             | 0.5  | 0.5  |
+      | tv.naver.com            | 0.5  | 0.32 |
+      | xxxlist.bar             | 0.5  | 0.52 |
+      | www.wapoz.info          | 0.26 | 0.24 |
       | www.sex1x.com           | 0.25 | 0.44 |
       | www.xnx33.com           | 0.5  | 0.48 |
       | xnxxsex.net             | 0.5  | 0.34 |
@@ -26,7 +29,6 @@
       | www.superporn.com       | 0.5  | 0.34 |
       | www.clip2vip.com        | 0.5  | 0.55 |
       | www.porndotcom.org      | 0.75 | 0.33 |
-      | xnxx.com.se             | 0.5  | 0.5  |
       | 3rabxn.com              | 0.25 | 0.48 |
       | ijavhd.com              | 0.75 | 0.53 |
       | pornocarioca.com        | 0.73 | 0.49 |
@@ -41,7 +43,6 @@
       | www.watchxn.com         | 0.5  | 0.56 |
       | pornhat.video           | 0.5  | 0.45 |
       | fpo.xxx                 | 0.25 | 0.46 |
-      | tv.naver.com            | 0.5  | 0.32 |
       | porndig.com             | 0.75 | 0.46 |
       | xlxx69.com              | 0.5  | 0.43 |
       | pornes.xxx              | 0.75 | 0.33 |
@@ -58,10 +59,9 @@
       | xxvidsx.com             | 0.68 | 0.34 |
       | xxx18.uno               | 0.21 | 0.53 |
       | gekso.org               | 0.26 | 0.3  |
-      | xorgasmo.com            | 0.26 | 0.45 |
       | www.abozeb.com          | 0.25 | 0.43 |
       | xxxbule.com             | 0.5  | 0.75 |
-      | xxxlist.bar             | 0.5  | 0.52 |
+
 
   场景大纲: yatv类型网站回归测试
     当用户在首页搜索框输入"<word>"

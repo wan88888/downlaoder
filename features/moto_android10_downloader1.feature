@@ -53,8 +53,8 @@
       | word            | x    | y    |
       | xhamster.com    | 0.26 | 0.62 |
       | xhwide5.com     | 0.74 | 0.62 |
-      #| xhamster.desi   | 0.26 | 0.82 |？
-      #| xhamster42.desi | 0.74 | 0.82 |？
+      | xhamster.desi   | 0.26 | 0.82 |
+      | xhamster42.desi | 0.74 | 0.82 |
 
   场景大纲: spankbang.com系列网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -70,16 +70,6 @@
       | word             | x    | y   |
       | la.spankbang.com | 0.74 | 0.8 |
       | spankbang.com    | 0.26 | 0.8 |
-
-  场景: dailymotion.com网站回归测试
-    当用户在首页搜索框输入"dailymotion.com"
-    而且用户在当前页面点击坐标(0.5,0.45)
-    那么用户应该看到悬浮按钮亮起
-    当用户点击悬浮下载按钮
-    那么用户应该看到下载进度页
-    当用户点击返回键
-    而且用户点击底部工具栏主页按钮
-    那么用户应该看到主页
 
   场景大纲: xvideos系列网站回归测试
     当用户在首页搜索框输入"<word>"

@@ -1,31 +1,29 @@
 # coding=utf-8
 from time import sleep
 from behave import *
-from features.environment import app_id
+from features.environment import app_id, click_exists1, click_exists2, wait_and_click, check_element_exists
+
+
+def search_test(context, word, sec, **locator_args):
+    wait_and_click(context, **locator_args)
+    context.driver.send_keys(word, clear=True)
+    context.driver.press('enter')
+    sleep(sec)
 
 
 @step('用户在首页搜索框输入"{word}"')
 def step_impl(context, word):
-    search_input = context.driver(resourceId=app_id(context, "tvSearch"))
-    search_input.wait()
-    search_input.click()
-    context.driver.send_keys(word, clear=True)
-    context.driver.press('enter')
-    sleep(10)
+    search_test(context, word, 10, resourceId=app_id(context, "tvSearch"))
 
 
 @step("用户应该看到悬浮按钮")
 def step_impl(context):
-    normal_load = context.driver(resourceId=app_id(context, "normalLoadView"))
-    normal_load.wait()
-    assert normal_load.exists
+    check_element_exists(context, resourceId=app_id(context, "normalLoadView"))
 
 
 @step("用户应该看到悬浮按钮亮起")
 def step_impl(context):
-    complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
-    complete_load.wait()
-    assert complete_load.exists
+    check_element_exists(context, resourceId=app_id(context, "completeLoadView"))
     sleep(1)
 
 
@@ -44,31 +42,23 @@ def step_impl(context):
 
 @step("用户应该看到下载进度页")
 def step_impl(context):
-    tv_title = context.driver(resourceId=app_id(context, "tvTitle"))
-    tv_title.wait()
-    assert tv_title.exists
+    check_element_exists(context, resourceId=app_id(context, "tvTitle"))
 
 
 @step("用户检查下载页存在")
 def step_impl(context):
-    complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
-    iv_load = context.driver(resourceId=app_id(context, "ivDownload"))
-    if complete_load.exists:
-        iv_load.click()
+    click_exists2(context, locator1={"resourceId": app_id(context, "completeLoadView")},
+                  locator2={"resourceId": app_id(context, "ivDownload")})
 
 
 @step("用户点击底部工具栏主页按钮")
 def step_impl(context):
-    iv_home = context.driver(resourceId=app_id(context, "ivGoHome"))
-    iv_home.wait()
-    iv_home.click()
+    check_element_exists(context, resourceId=app_id(context, "ivGoHome"))
 
 
 @step("用户应该看到主页")
 def step_impl(context):
-    tv_top_title = context.driver(resourceId=app_id(context, "tvTopTitle"))
-    tv_top_title.wait()
-    assert tv_top_title.exists
+    check_element_exists(context, resourceId=app_id(context, "tvTopTitle"))
     sleep(1)
 
 
@@ -85,13 +75,7 @@ def step_impl(context, option):
         2: {"textContains": "I'm"},
         3: {"resourceId": "age_check_yes"},
     }
-    wait_and_click(context, **button_conditions.get(int(option), {}))
-
-
-def wait_and_click(context, **locator_args):
-    element = context.driver(**locator_args)
-    if element.wait():
-        element.click()
+    click_exists1(context, **button_conditions.get(int(option), {}))
 
 
 @step("用户在当前页面点击播放按钮{item}")
@@ -103,32 +87,26 @@ def step_impl(context, item):
         4: {"text": "재생"},
     }
     button_locator = buttons.get(int(item))
-    if button_locator:
-        wait_and_click(context, **button_locator)
+    wait_and_click(context, **button_locator)
 
 
 @step('用户在搜索框输入"{txt}"')
 def step_impl(context, txt):
-    search_icon = context.driver(text="Search")
-    search_icon.wait()
-    search_icon.click()
-    context.driver.send_keys(txt, clear=True)
-    context.driver.press('enter')
-    sleep(5)
+    search_test(context, txt, 5, text="Search")
+    # wait_and_click(context, text="Search")
+    # context.driver.send_keys(txt, clear=True)
+    # context.driver.press('enter')
+    # sleep(5)
 
 
 @step("用户在当前点击结果1")
 def step_impl(context):
-    result_1 = context.driver(resourceId="result_1")
-    result_1.wait()
-    result_1.click()
+    wait_and_click(context, resourceId="result_1")
 
 
 @step("用户在当前页面点击关闭广告按钮")
 def step_impl(context):
-    ad_close = context.driver(text="Close Ad ✖")
-    if ad_close.exists:
-        ad_close.click()
+    click_exists1(context, text="Close Ad ✖")
     sleep(2)
 
 
@@ -157,3 +135,11 @@ def step_impl(context):
 @step("用户向上滑动页面{x}次")
 def step_impl(context, x):
     [context.driver.swipe_ext("up") for _ in range(int(x))]
+
+
+@step("用户在当前页面点击播放按钮")
+def step_impl(context):
+    wait_and_click(context, text="")
+    sleep(2)
+    click_exists2(context, locator1={"resourceId": app_id(context, "normalLoadView")},
+                  locator2={"text": ""})
