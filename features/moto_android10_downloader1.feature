@@ -1,7 +1,7 @@
 # language: zh-CN
 功能: all1 top100网站回归测试
 
-  场景大纲: pornhub系列网站回归测试
+  场景大纲: pornhub网站回归测试
     当用户在首页搜索框输入"<word>"
     而且用户向上滑动页面1次
     那么用户应该看到悬浮按钮亮起
@@ -22,7 +22,7 @@
       | fr.pornhub.com  |
       | pt.pornhub.com  |
 
-  场景大纲: redtube.com系列网站回归测试
+  场景大纲: redtube.com网站回归测试
     当用户在首页搜索框输入"<word>"
     而且用户点击同意按钮1
     那么用户应该看到悬浮按钮
@@ -39,7 +39,7 @@
       | redtube.com.br | 0.25 | 0.48 |
       | txxx.com       | 0.26 | 0.31 |
 
-  场景大纲: xhamster.com系列网站回归测试
+  场景大纲: xhamster.com网站回归测试
     当用户在首页搜索框输入"<word>"
     而且用户点击同意按钮2
     而且用户在当前页面点击坐标(<x>,<y>)
@@ -56,7 +56,7 @@
       | xhamster.desi   | 0.26 | 0.82 |
       | xhamster42.desi | 0.74 | 0.82 |
 
-  场景大纲: spankbang.com系列网站回归测试
+  场景大纲: spankbang.com网站回归测试
     当用户在首页搜索框输入"<word>"
     而且用户点击同意按钮3
     当用户在当前页面点击坐标(<x>,<y>)
@@ -70,8 +70,8 @@
       | word             | x    | y   |
       | la.spankbang.com | 0.74 | 0.8 |
       | spankbang.com    | 0.26 | 0.8 |
-
-  场景大纲: xvideos系列网站回归测试
+#
+  场景大纲: xvideos网站回归测试
     当用户在首页搜索框输入"<word>"
     那么用户应该看到悬浮按钮亮起
     当用户点击悬浮下载按钮
@@ -89,7 +89,7 @@
       | www.xvideos.com |
       | www.xvideos.es  |
 
-  场景大纲: xnxx系列网站回归测试
+  场景大纲: xnxx网站回归测试
     当用户在首页搜索框输入"<word>"
     那么用户应该看到悬浮按钮
     当用户在当前页面点击坐标(0.5,0.6)

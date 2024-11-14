@@ -1,7 +1,7 @@
 # coding=utf-8
 from time import sleep
 from behave import *
-from features.environment import app_id, click_exists1, click_exists2, wait_and_click, check_element_exists
+from features.environment import *
 
 
 def search_test(context, word, sec, **locator_args):
@@ -18,31 +18,30 @@ def step_impl(context, word):
 
 @step("用户应该看到悬浮按钮")
 def step_impl(context):
-    check_element_exists(context, resourceId=app_id(context, "normalLoadView"))
+    check_element_exists(context, "normalLoadView")
 
 
 @step("用户应该看到悬浮按钮亮起")
 def step_impl(context):
-    check_element_exists(context, resourceId=app_id(context, "completeLoadView"))
+    check_element_exists(context, "completeLoadView")
     sleep(1)
 
 
 @step("用户点击悬浮下载按钮")
 def step_impl(context):
-    count_text = context.driver(resourceId=app_id(context, "remindCountView")).get_text()
+    count_text = app_action(context, "remindCountView", "get_text")
     download_num = int(count_text)
-    complete_load = context.driver(resourceId=app_id(context, "completeLoadView"))
-    complete_load.click()
+    app_action(context, "completeLoadView")
     sleep(2)
-    download_button = context.driver(resourceId=app_id(context, "downloadView"))
-    tv_list = context.driver(resourceId=app_id(context, "tvVideoList"))
+    download_button = get_element(context, "downloadView")
+    tv_list = get_element(context, "tvVideoList")
     if download_num > 1 or tv_list.exists:
         download_button.click()
 
 
 @step("用户应该看到下载进度页")
 def step_impl(context):
-    check_element_exists(context, resourceId=app_id(context, "tvTitle"))
+    check_element_exists(context, "tvTitle")
 
 
 @step("用户检查下载页存在")
@@ -53,12 +52,12 @@ def step_impl(context):
 
 @step("用户点击底部工具栏主页按钮")
 def step_impl(context):
-    check_element_exists(context, resourceId=app_id(context, "ivGoHome"))
+    wait_and_click1(context, "ivGoHome")
 
 
 @step("用户应该看到主页")
 def step_impl(context):
-    check_element_exists(context, resourceId=app_id(context, "tvTopTitle"))
+    check_element_exists(context, "tvTopTitle")
     sleep(1)
 
 
@@ -83,7 +82,7 @@ def step_impl(context, item):
     buttons = {
         1: {"text": ""},
         2: {"text": "Play"},
-        3: {"xpath": '//*[@resource-id="videoPopup"]/android.view.View[1]/android.widget.ToggleButton[1]'},
+        3: {"resourceId": 'movie_player'},
         4: {"text": "재생"},
     }
     button_locator = buttons.get(int(item))
@@ -93,10 +92,6 @@ def step_impl(context, item):
 @step('用户在搜索框输入"{txt}"')
 def step_impl(context, txt):
     search_test(context, txt, 5, text="Search")
-    # wait_and_click(context, text="Search")
-    # context.driver.send_keys(txt, clear=True)
-    # context.driver.press('enter')
-    # sleep(5)
 
 
 @step("用户在当前点击结果1")
@@ -113,14 +108,12 @@ def step_impl(context):
 @step("用户检查工具栏窗口")
 def step_impl(context):
     sleep(2)
-    tv_tab = context.driver(resourceId=app_id(context, "tvTabsNum2"))
-    num_text = tv_tab.get_text()
+    num_text = app_action(context, "tvTabsNum2", "get_text")
     windows_num = int(num_text)
     if windows_num > 1:
-        iv_tab = context.driver(resourceId=app_id(context, "ivTabs2"))
-        iv_tab.click()
+        app_action(context, "ivTabs2")
         sleep(2)
-        iv_close = context.driver(resourceId=app_id(context, "ivClose"))
+        iv_close = get_element(context, "ivClose")
         iv_close[0].click()
         context.driver.press('back')
         sleep(1)
