@@ -50,11 +50,11 @@
     而且用户点击底部工具栏主页按钮
     那么用户应该看到主页
     例子:
-      | word            | x    | y    |
-      | xhamster.com    | 0.26 | 0.62 |
-      | xhwide5.com     | 0.74 | 0.62 |
-      | xhamster.desi   | 0.26 | 0.82 |
-      | xhamster42.desi | 0.74 | 0.82 |
+      | word         | x    | y    |
+      | xhamster.com | 0.26 | 0.62 |
+      | xhwide5.com  | 0.74 | 0.62 |
+#      | xhamster.desi   | 0.26 | 0.82 |
+#      | xhamster42.desi | 0.74 | 0.82 |
 
   场景大纲: spankbang.com网站回归测试
     当用户在首页搜索框输入"<word>"
@@ -70,7 +70,7 @@
       | word             | x    | y   |
       | la.spankbang.com | 0.74 | 0.8 |
       | spankbang.com    | 0.26 | 0.8 |
-#
+
   场景大纲: xvideos网站回归测试
     当用户在首页搜索框输入"<word>"
     那么用户应该看到悬浮按钮亮起

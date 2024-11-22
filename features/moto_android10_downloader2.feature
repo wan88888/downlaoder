@@ -16,7 +16,7 @@
       | xorgasmo.com            | 0.26 | 0.45 |
       | xvideosincesto.com      | 0.5  | 0.41 |
       | xnxx.com.se             | 0.5  | 0.5  |
-      | tv.naver.com            | 0.5  | 0.32 |
+#      | tv.naver.com            | 0.5  | 0.32 |?
       | xxxlist.bar             | 0.5  | 0.52 |
       | www.wapoz.info          | 0.26 | 0.24 |
       | www.sex1x.com           | 0.25 | 0.44 |

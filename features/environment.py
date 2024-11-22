@@ -66,10 +66,10 @@ def before_feature(context, feature):
 
 
 def after_scenario(context, scenario):
-    random_number = random.randint(1, 5)
-    if random_number == 3:
+    close_extra_tabs(context)
+    random_number = random.randint(1, 3)
+    if random_number == 2:
         handle_downloads(context)
-        close_extra_tabs(context)
 
 
 def handle_downloads(context):
@@ -84,9 +84,14 @@ def delete_all_downloads(context):
     wait_and_click1(context, "right_actv")
 
 
+def get_ele_text(context, element_id):
+    ele_text = app_action(context, element_id, "get_text")
+    ele_num = int(ele_text)
+    return ele_num
+
+
 def close_extra_tabs(context):
-    num_text = app_action(context, "tvTabsNum2", "get_text")
-    windows_num = int(num_text)
+    windows_num = get_ele_text(context, "tvTabsNum2")
     if windows_num > 1:
         app_action(context, "ivTabs2")
         iv_close = get_element(context, "ivClose")

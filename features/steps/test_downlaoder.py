@@ -29,14 +29,8 @@ def step_impl(context):
 
 @step("用户点击悬浮下载按钮")
 def step_impl(context):
-    count_text = app_action(context, "remindCountView", "get_text")
-    download_num = int(count_text)
     app_action(context, "completeLoadView")
-    sleep(2)
-    download_button = get_element(context, "downloadView")
-    tv_list = get_element(context, "tvVideoList")
-    if download_num > 1 or tv_list.exists:
-        download_button.click()
+    click_exists1(context, resourceId=app_id(context, "downloadView"))
 
 
 @step("用户应该看到下载进度页")
@@ -58,7 +52,6 @@ def step_impl(context):
 @step("用户应该看到主页")
 def step_impl(context):
     check_element_exists(context, "tvTopTitle")
-    sleep(1)
 
 
 @step("用户在当前页面点击坐标({x},{y})")
@@ -69,12 +62,13 @@ def step_impl(context, x, y):
 
 @step("用户点击同意按钮{option}")
 def step_impl(context, option):
-    button_conditions = {
-        1: {"textContains": "Enter"},
+    buttons = {
+        1: {"resourceId": "btn_agree"},
         2: {"textContains": "I'm"},
         3: {"resourceId": "age_check_yes"},
     }
-    click_exists1(context, **button_conditions.get(int(option), {}))
+    button_locator = buttons.get(int(option))
+    click_exists1(context, **button_locator)
 
 
 @step("用户在当前页面点击播放按钮{item}")
@@ -102,14 +96,13 @@ def step_impl(context):
 @step("用户在当前页面点击关闭广告按钮")
 def step_impl(context):
     click_exists1(context, text="Close Ad ✖")
-    sleep(2)
+    # sleep(2)
 
 
 @step("用户检查工具栏窗口")
 def step_impl(context):
     sleep(2)
-    num_text = app_action(context, "tvTabsNum2", "get_text")
-    windows_num = int(num_text)
+    windows_num = get_ele_text(context, "tvTabsNum2")
     if windows_num > 1:
         app_action(context, "ivTabs2")
         sleep(2)
