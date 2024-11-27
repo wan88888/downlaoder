@@ -30,18 +30,13 @@ def step_impl(context):
 @step("用户点击悬浮下载按钮")
 def step_impl(context):
     app_action(context, "completeLoadView")
+    sleep(1)
     click_exists1(context, resourceId=app_id(context, "downloadView"))
 
 
 @step("用户应该看到下载进度页")
 def step_impl(context):
     check_element_exists(context, "tvTitle")
-
-
-@step("用户检查下载页存在")
-def step_impl(context):
-    click_exists2(context, locator1={"resourceId": app_id(context, "completeLoadView")},
-                  locator2={"resourceId": app_id(context, "ivDownload")})
 
 
 @step("用户点击底部工具栏主页按钮")
@@ -76,8 +71,9 @@ def step_impl(context, item):
     buttons = {
         1: {"text": ""},
         2: {"text": "Play"},
-        3: {"resourceId": 'movie_player'},
+        3: {"resourceId": 'player'},
         4: {"text": "재생"},
+        5: {"resourceId": "kt_player"},
     }
     button_locator = buttons.get(int(item))
     wait_and_click(context, **button_locator)
@@ -91,12 +87,17 @@ def step_impl(context, txt):
 @step("用户在当前点击结果1")
 def step_impl(context):
     wait_and_click(context, resourceId="result_1")
+    sleep(4)
 
 
-@step("用户在当前页面点击关闭广告按钮")
+@step("用户在当前页面点击关闭广告2")
 def step_impl(context):
     click_exists1(context, text="Close Ad ✖")
-    # sleep(2)
+
+
+@step("用户在当前页面点击关闭广告1")
+def step_impl(context):
+    click_exists1(context, text="Close Ad")
 
 
 @step("用户检查工具栏窗口")
@@ -105,7 +106,7 @@ def step_impl(context):
     windows_num = get_ele_text(context, "tvTabsNum2")
     if windows_num > 1:
         app_action(context, "ivTabs2")
-        sleep(2)
+        sleep(1)
         iv_close = get_element(context, "ivClose")
         iv_close[0].click()
         context.driver.press('back')
