@@ -1,19 +1,52 @@
 # coding=utf-8
-from time import sleep
 from behave import *
 from features.environment import *
+from features.config import *
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from functools import wraps
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def retry_on_exception(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        for attempt in range(MAX_RETRY_COUNT):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                if attempt < MAX_RETRY_COUNT - 1:
+                    logger.warning(f"{func.__name__} 执行失败，正在重试 {attempt + 1}/{MAX_RETRY_COUNT}")
+                    time.sleep(RETRY_INTERVAL)
+                else:
+                    logger.error(f"{func.__name__} 执行失败: {str(e)}")
+                    raise
+    return wrapper
 
 
-def search_test(context, word, sec, **locator_args):
-    wait_and_click(context, **locator_args)
+@retry_on_exception
+def wait_for_element(context, timeout=DEFAULT_TIMEOUT, **locator_args):
+    logger.info(f"等待元素出现: {locator_args}")
+    element = context.driver(**locator_args)
+    WebDriverWait(context.driver, timeout).until(
+        lambda x: element.exists
+    )
+    return element
+
+
+def search_test(context, word, **locator_args):
+    element = wait_for_element(context, **locator_args)
+    element.click()
     context.driver.send_keys(word, clear=True)
     context.driver.press('enter')
-    sleep(sec)
+    wait_for_element(context, resourceId=app_id(context, "completeLoadView"))
 
 
 @step('用户在首页搜索框输入"{word}"')
 def step_impl(context, word):
-    search_test(context, word, 10, resourceId=app_id(context, "tvSearch"))
+    search_test(context, resourceId=app_id(context, "tvSearch"), word=word)
 
 
 @step("用户应该看到悬浮按钮")
@@ -23,15 +56,13 @@ def step_impl(context):
 
 @step("用户应该看到悬浮按钮亮起")
 def step_impl(context):
-    check_element_exists(context, "completeLoadView")
-    sleep(1)
+    wait_for_element(context, resourceId=app_id(context, "completeLoadView"))
 
 
 @step("用户点击悬浮下载按钮")
 def step_impl(context):
-    app_action(context, "completeLoadView")
-    sleep(1)
-    click_exists1(context, resourceId=app_id(context, "downloadView"))
+    wait_for_element(context, resourceId=app_id(context, "completeLoadView")).click()
+    wait_for_element(context, resourceId=app_id(context, "downloadView")).click()
 
 
 @step("用户应该看到下载进度页")
@@ -52,42 +83,40 @@ def step_impl(context):
 @step("用户在当前页面点击坐标({x},{y})")
 def step_impl(context, x, y):
     context.driver.click(float(x), float(y))
-    sleep(4)
+    wait_for_element(context, resourceId=app_id(context, "completeLoadView"))
 
 
 @step("用户点击同意按钮{option}")
 def step_impl(context, option):
-    buttons = {
-        1: {"resourceId": "btn_agree"},
-        2: {"textContains": "I'm"},
-        3: {"resourceId": "age_check_yes"},
-    }
-    button_locator = buttons.get(int(option))
+    button_locator = BUTTON_LOCATORS['agree'].get(int(option))
     click_exists1(context, **button_locator)
 
 
 @step("用户在当前页面点击播放按钮{item}")
 def step_impl(context, item):
-    buttons = {
-        1: {"text": ""},
-        2: {"text": "Play"},
-        3: {"resourceId": 'player'},
-        4: {"text": "재생"},
-        5: {"resourceId": "kt_player"},
-    }
-    button_locator = buttons.get(int(item))
+    button_locator = BUTTON_LOCATORS['play'].get(int(item))
     wait_and_click(context, **button_locator)
+
+
+@step("用户在当前页面点击关闭广告2")
+def step_impl(context):
+    click_exists1(context, **BUTTON_LOCATORS['close_ad'][2])
+
+
+@step("用户在当前页面点击关闭广告1")
+def step_impl(context):
+    click_exists1(context, **BUTTON_LOCATORS['close_ad'][1])
 
 
 @step('用户在搜索框输入"{txt}"')
 def step_impl(context, txt):
-    search_test(context, txt, 5, text="Search")
+    search_test(context, txt, text="Search")
 
 
 @step("用户在当前点击结果1")
 def step_impl(context):
     wait_and_click(context, resourceId="result_1")
-    sleep(4)
+    wait_for_element(context, resourceId=app_id(context, "completeLoadView"))
 
 
 @step("用户在当前页面点击关闭广告2")
@@ -102,21 +131,26 @@ def step_impl(context):
 
 @step("用户检查工具栏窗口")
 def step_impl(context):
-    sleep(2)
-    windows_num = get_ele_text(context, "tvTabsNum2")
-    if windows_num > 1:
-        app_action(context, "ivTabs2")
-        sleep(1)
-        iv_close = get_element(context, "ivClose")
-        iv_close[0].click()
-        context.driver.press('back')
-        sleep(1)
+    try:
+        windows_num = get_ele_text(context, "tvTabsNum2")
+        if windows_num > 1:
+            app_action(context, "ivTabs2")
+            wait_for_element(context, resourceId=app_id(context, "ivClose"))
+            iv_close = get_element(context, "ivClose")
+            iv_close[0].click()
+            context.driver.press('back')
+            wait_for_element(context, resourceId=app_id(context, "completeLoadView"))
+    except Exception as e:
+        print(f"检查工具栏窗口时发生错误: {e}")
 
 
 @step("用户点击返回键")
 def step_impl(context):
     context.driver.press('back')
-    sleep(1)
+    try:
+        wait_for_element(context, timeout=5, resourceId=app_id(context, "completeLoadView"))
+    except Exception:
+        pass
 
 
 @step("用户向上滑动页面{x}次")

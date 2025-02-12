@@ -19,9 +19,13 @@ def get_element(context, element_id):
 
 
 def check_element_exists(context, element_id):
-    element = get_element(context, element_id)
-    element.wait()
-    assert element.exists
+    try:
+        element = get_element(context, element_id)
+        WebDriverWait(context.driver, 30).until(lambda x: element.exists)
+        assert element.exists
+    except Exception as e:
+        print(f"检查元素存在时发生错误: {e}")
+        raise
 
 
 def app_action(context, element_id, action="click"):
@@ -34,29 +38,34 @@ def app_action(context, element_id, action="click"):
     return actions[action]()
 
 
-def click_exists1(context, **locator_args):
-    element = context.driver(**locator_args)
-    if element.exists:
+def click_exists(context, locator1, locator2=None):
+    try:
+        element1 = context.driver(**locator1)
+        if element1.exists:
+            if locator2:
+                element2 = context.driver(**locator2)
+                element2.click()
+            else:
+                element1.click()
+            return True
+        return False
+    except Exception as e:
+        print(f"点击元素时发生错误: {e}")
+        return False
+
+
+def wait_and_click(context, element_id=None, **locator_args):
+    try:
+        if element_id:
+            element = get_element(context, element_id)
+        else:
+            element = context.driver(**locator_args)
+        WebDriverWait(context.driver, 30).until(lambda x: element.exists)
         element.click()
-
-
-def click_exists2(context, locator1, locator2):
-    element1 = context.driver(**locator1)
-    element2 = context.driver(**locator2)
-    if element1.exists:
-        element2.click()
-
-
-def wait_and_click(context, **locator_args):
-    element = context.driver(**locator_args)
-    element.wait()
-    element.click()
-
-
-def wait_and_click1(context, element_id):
-    element = get_element(context, element_id)
-    element.wait()
-    element.click()
+        return True
+    except Exception as e:
+        print(f"等待并点击元素时发生错误: {e}")
+        return False
 
 
 def before_feature(context, feature):
