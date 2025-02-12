@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+
+# IDE
+.idea/
+*.iml
+*.iws
+
+# Test Reports and Screenshots
+report/
+screenshots/
+test_report.json
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Local development settings
+.env
+.env.local
+
+# Logs
+*.log
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Temporary files
+*.swp
+*.swo
+.DS_Store
